@@ -1,0 +1,47 @@
+// text colors for material ui
+$textPrimary: hsl(230, 44%, 64%);
+$textSecondary: hsl(231, 48%, 48%);
+$textDisabled: hsl(232, 54%, 41%);
+$textHint: hsl(0, 0%, 100%);
+
+// primary palette colors  for material ui
+$palettePrimaryLight: hsl(230, 44%, 64%);
+$palettePrimaryMain: hsl(340, 100%, 63%);
+$palettePrimaryDark: hsl(232, 54%, 41%);
+$palettePrimaryContrastText: hsl(0, 0%, 100%);
+
+// secondary palette colors  for material ui
+$paletteSecondaryLight: hsl(340, 100%, 63%);
+$paletteSecondaryMain: hsl(339, 100%, 48%);
+$paletteSecondaryDark: hsl(333, 84%, 42%);
+$paletteSecondaryContrastText: hsl(0, 0%, 100%);
+
+// error palette colors  for material ui
+$paletteErrorLight: hsl(0, 69%, 67%);
+$paletteErrorMain: hsl(4, 90%, 58%);
+$paletteErrorDark: hsl(0, 65%, 51%);
+$paletteErrorContrastText: hsl(0, 0%, 100%);
+
+// warning palette colors  for material ui
+$paletteWarningLight: hsl(36, 100%, 65%);
+$paletteWarningMain: hsl(36, 100%, 50%);
+$paletteWarningDark: hsl(30, 100%, 48%);
+$paletteWarningContrastText: hsl(0, 0%, 0%);
+
+// info palette colors  for material ui
+$paletteInfoLight: hsl(207, 89%, 68%);
+$paletteInfoMain: hsl(207, 90%, 54%);
+$paletteInfoDark: hsl(210, 79%, 46%);
+$paletteInfoContrastText: hsl(0, 0%, 100%);
+
+// success palette colors  for material ui
+$paletteSuccessLight: hsl(123, 38%, 64%);
+$paletteSuccessMain: hsl(122, 39%, 49%);
+$paletteSuccessDark: hsl(123, 43%, 39%);
+$paletteSuccessContrastText: hsl(0, 0%, 0%);
+
+//background palette colors for material ui
+$paper: hsl(0, 0%, 100%);
+$background: hsl(0, 0%, 100%);
+
+// // variables for custom styling

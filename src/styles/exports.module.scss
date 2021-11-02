@@ -1,0 +1,49 @@
+@import "variables.module";
+
+:export {
+	// text colors for material ui
+	textPrimary: $textPrimary;
+	textSecondary: $textSecondary;
+	textDisabled: $textDisabled;
+	textHint: $textHint;
+
+	// primary palette colors  for material ui
+	palettePrimaryLight: $palettePrimaryLight;
+	palettePrimaryMain: $palettePrimaryMain;
+	palettePrimaryDark: $palettePrimaryDark;
+	palettePrimaryContrastText: $palettePrimaryContrastText;
+
+	// secondary palette colors  for material ui
+	paletteSecondaryLight: $paletteSecondaryLight;
+	paletteSecondaryMain: $paletteSecondaryMain;
+	paletteSecondaryDark: $paletteSecondaryDark;
+	paletteSecondaryContrastText: $paletteSecondaryContrastText;
+
+	// error palette colors  for material ui
+	paletteErrorLight: $paletteErrorLight;
+	paletteErrorMain: $paletteErrorMain;
+	paletteErrorDark: $paletteErrorDark;
+	paletteErrorContrastText: $paletteErrorContrastText;
+
+	// warning palette colors  for material ui
+	paletteWarningLight: $paletteWarningLight;
+	paletteWarningMain: $paletteWarningMain;
+	paletteWarningDark: $paletteWarningDark;
+	paletteWarningContrastText: $paletteWarningContrastText;
+
+	// info palette colors  for material ui
+	paletteInfoLight: $paletteInfoLight;
+	paletteInfoMain: $paletteInfoMain;
+	paletteInfoDark: $paletteInfoDark;
+	paletteInfoContrastText: $paletteInfoContrastText;
+
+	// success palette colors  for material ui
+	paletteSuccessLight: $paletteSuccessLight;
+	paletteSuccessMain: $paletteSuccessMain;
+	paletteSuccessDark: $paletteSuccessDark;
+	paletteSuccessContrastText: $paletteSuccessContrastText;
+
+	//background palette colors for material ui
+	paper: $paper;
+	background: $background;
+}
