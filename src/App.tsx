@@ -1,5 +1,5 @@
-import { messageText, testReducer } from "redux/app/appSlice";
-import { useAppSelector, useAppDispatch } from "redux/ReduxHooks";
+import { messageText, testReducer } from "reduxStore/app/appSlice";
+import { useAppDispatch, useAppSelector } from "reduxStore";
 
 const App = () => {
 	const message = useAppSelector(messageText);

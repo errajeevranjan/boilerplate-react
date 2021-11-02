@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../ReduxStore';
+import { RootState } from '..';
 
 
-export interface CounterState {
+export interface AppState {
   message: string;
   status: 'idle' | 'loading' | 'failed';
 }
 
-const initialState: CounterState = {
+const initialState: AppState = {
   message: 'If you can see this message then you have working redux setup!',
   status: 'idle',
 };
