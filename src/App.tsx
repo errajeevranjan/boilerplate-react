@@ -14,8 +14,6 @@ const App = () => {
 	const isDarkModeActive = useAppSelector(darkModeStatus);
 	const dispatch = useAppDispatch();
 
-	console.log("dark mode", darkTheme);
-
 	return (
 		<ThemeProvider theme={isDarkModeActive ? darkTheme : lightTheme}>
 			<Paper sx={{ height: "100vh" }}>
