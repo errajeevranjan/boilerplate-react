@@ -1,7 +1,6 @@
 import {
 	AppBar,
 	Button,
-	Divider,
 	IconButton,
 	List,
 	ListItem,
@@ -10,15 +9,35 @@ import {
 	SwipeableDrawer,
 	Toolbar,
 	Typography,
+	Stack,
+	FormControlLabel,
+	SvgIcon,
 } from "@mui/material";
+import { NAV_LINKS } from "constants/NavLinks";
 import * as React from "react";
-import { MdMenu } from "react-icons/md";
+import { MdClose, MdMenu } from "react-icons/md";
+import { DarkModeSwitch } from "./DarkModeSwitch";
+import { useAppDispatch, useAppSelector } from "reduxStore";
+import {
+	appDataInReduxStore,
+	toggleDarkModeReducer,
+} from "reduxStore/app/appSlice";
 
 type ReactChildren = {
 	children: React.ReactNode;
 };
 
+type Nav = {
+	key: string;
+	title: string;
+	path: string;
+	icon: React.ElementType;
+};
+
 const Navigation = ({ children }: ReactChildren) => {
+	const dispatch = useAppDispatch();
+	const { isDarkModeActive } = useAppSelector(appDataInReduxStore);
+
 	const [open, setOpen] = React.useState(false);
 
 	const toggleDrawer = () => {
@@ -39,9 +58,17 @@ const Navigation = ({ children }: ReactChildren) => {
 						<MdMenu />
 					</IconButton>
 					<Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-						News
+						Brand Name
 					</Typography>
-					<Button color='inherit'>Login</Button>
+					<FormControlLabel
+						control={
+							<DarkModeSwitch
+								sx={{ m: 1 }}
+								onClick={() => dispatch(toggleDarkModeReducer())}
+							/>
+						}
+						label={`${isDarkModeActive ? "Dark" : "Light"} Mode Active`}
+					/>
 				</Toolbar>
 			</AppBar>
 
@@ -52,20 +79,27 @@ const Navigation = ({ children }: ReactChildren) => {
 				open={open}
 				onClose={toggleDrawer}
 				onOpen={toggleDrawer}>
+				<Stack
+					direction='row'
+					justifyContent='space-around'
+					alignItems='center'>
+					<IconButton
+						size='large'
+						color='inherit'
+						aria-label='close-menu'
+						onClick={toggleDrawer}>
+						<MdClose />
+					</IconButton>
+
+					<Button>Brand Name</Button>
+				</Stack>
 				<List>
-					{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>{index % 2 === 0 ? "inbox" : "mail"}</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
-				<Divider />
-				<List>
-					{["All mail", "Trash", "Spam"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>{index % 2 === 0 ? "inbox" : "mail"}</ListItemIcon>
-							<ListItemText primary={text} />
+					{NAV_LINKS.map((nav: Nav) => (
+						<ListItem button key={nav.key}>
+							<ListItemIcon>
+								<SvgIcon component={nav.icon} />
+							</ListItemIcon>
+							<ListItemText primary={nav.title} />
 						</ListItem>
 					))}
 				</List>
