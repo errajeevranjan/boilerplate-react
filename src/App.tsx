@@ -1,19 +1,14 @@
-import { Button, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import Navigation from "components/navigation/Navigation";
 import { useAppDispatch, useAppSelector } from "reduxStore";
-import {
-	appDataInReduxStore,
-	testReducer,
-	toggleDarkModeReducer,
-} from "reduxStore/app/appSlice";
+import { appDataInReduxStore, testReducer } from "reduxStore/app/appSlice";
 import { darkTheme, lightTheme } from "theme/Theme";
 
 const App = () => {
 	// const appDataInReduxStore  = useAppSelector((state) => state.app); //! alternate way to access entire object of certain slice
-	const { message, isDarkModeActive } = useAppSelector(appDataInReduxStore);
-
 	const dispatch = useAppDispatch();
+	const { message, isDarkModeActive } = useAppSelector(appDataInReduxStore);
 
 	return (
 		<ThemeProvider theme={isDarkModeActive ? darkTheme : lightTheme}>
@@ -25,12 +20,6 @@ const App = () => {
 					<button onClick={() => dispatch(testReducer())}>
 						Test if reducer is working or not
 					</button>
-					<Button
-						variant='contained'
-						color='secondary'
-						onClick={() => dispatch(toggleDarkModeReducer())}>
-						Toggle Theme
-					</Button>
 				</Navigation>
 			</Paper>
 		</ThemeProvider>
