@@ -1,63 +1,65 @@
 import {
-	AppBar,
-	Button,
+	Box,
+	CssBaseline,
+	Divider,
+	FormControlLabel,
 	IconButton,
 	List,
 	ListItem,
 	ListItemIcon,
 	ListItemText,
-	SwipeableDrawer,
 	Toolbar,
 	Typography,
-	Stack,
-	FormControlLabel,
-	SvgIcon,
 } from "@mui/material";
-import { NAV_LINKS } from "constants/NavLinks";
+import { useTheme } from "@mui/material/styles";
 import * as React from "react";
-import { MdClose, MdMenu } from "react-icons/md";
+import { MdChevronRight, MdInbox, MdMail, MdMenu } from "react-icons/md";
+import { useAppDispatch } from "reduxStore";
+import { toggleDarkModeReducer } from "reduxStore/app/appSlice";
 import { DarkModeSwitch } from "./DarkModeSwitch";
-import { useAppDispatch, useAppSelector } from "reduxStore";
-import {
-	appDataInReduxStore,
-	toggleDarkModeReducer,
-} from "reduxStore/app/appSlice";
+import { AppBar, Drawer, DrawerHeader } from "./NavigationComponents";
 
 type ReactChildren = {
 	children: React.ReactNode;
 };
 
-type Nav = {
-	key: string;
-	title: string;
-	path: string;
-	icon: React.ElementType;
-};
-
 const Navigation = ({ children }: ReactChildren) => {
 	const dispatch = useAppDispatch();
-	const { isDarkModeActive } = useAppSelector(appDataInReduxStore);
 
+	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 
-	const toggleDrawer = () => {
-		setOpen(!open);
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+
+	const handleDrawerClose = () => {
+		setOpen(false);
 	};
 
 	return (
-		<>
-			<AppBar position='static'>
+		<Box sx={{ display: "flex" }}>
+			<CssBaseline />
+			<AppBar position='fixed' open={open} color='inherit'>
 				<Toolbar>
 					<IconButton
-						size='large'
-						edge='start'
 						color='inherit'
-						aria-label='menu'
-						sx={{ mr: 2 }}
-						onClick={toggleDrawer}>
+						aria-label='open drawer'
+						onClick={handleDrawerOpen}
+						edge='start'
+						sx={{
+							marginRight: "36px",
+							...(open && { display: "none" }),
+						}}>
 						<MdMenu />
 					</IconButton>
-					<Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+					<Typography
+						sx={{
+							...(open && { display: "none" }),
+						}}
+						variant='h6'
+						noWrap
+						component='div'>
 						Brand Name
 					</Typography>
 					<FormControlLabel
@@ -67,44 +69,51 @@ const Navigation = ({ children }: ReactChildren) => {
 								onClick={() => dispatch(toggleDarkModeReducer())}
 							/>
 						}
-						label={`${isDarkModeActive ? "Dark" : "Light"} Mode Active`}
+						label={""}
 					/>
 				</Toolbar>
 			</AppBar>
-
-			{children}
-
-			<SwipeableDrawer
-				anchor={"left"}
-				open={open}
-				onClose={toggleDrawer}
-				onOpen={toggleDrawer}>
-				<Stack
-					direction='row'
-					justifyContent='space-around'
-					alignItems='center'>
-					<IconButton
-						size='large'
-						color='inherit'
-						aria-label='close-menu'
-						onClick={toggleDrawer}>
-						<MdClose />
+			<Drawer variant='permanent' open={open}>
+				<DrawerHeader>
+					<Typography variant='h6' noWrap component='div'>
+						Brand Name
+					</Typography>
+					<IconButton onClick={handleDrawerClose}>
+						{theme.direction === "rtl" ? (
+							<MdChevronRight />
+						) : (
+							<MdChevronRight />
+						)}
 					</IconButton>
-
-					<Button>Brand Name</Button>
-				</Stack>
+				</DrawerHeader>
+				<Divider />
 				<List>
-					{NAV_LINKS.map((nav: Nav) => (
-						<ListItem button key={nav.key}>
+					{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+						<ListItem button key={text}>
 							<ListItemIcon>
-								<SvgIcon component={nav.icon} />
+								{index % 2 === 0 ? <MdInbox /> : <MdMail />}
 							</ListItemIcon>
-							<ListItemText primary={nav.title} />
+							<ListItemText primary={text} />
 						</ListItem>
 					))}
 				</List>
-			</SwipeableDrawer>
-		</>
+				<Divider />
+				<List>
+					{["All mail", "Trash", "Spam"].map((text, index) => (
+						<ListItem button key={text}>
+							<ListItemIcon>
+								{index % 2 === 0 ? <MdInbox /> : <MdMail />}
+							</ListItemIcon>
+							<ListItemText primary={text} />
+						</ListItem>
+					))}
+				</List>
+			</Drawer>
+			<Box component='main' sx={{ flexGrow: 1, p: 3, overflow: "hidden" }}>
+				<DrawerHeader />
+				{children}
+			</Box>
+		</Box>
 	);
 };
 export default Navigation;
