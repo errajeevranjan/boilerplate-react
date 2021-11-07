@@ -1,4 +1,4 @@
-import { IconButton, Alert, Snackbar } from "@mui/material";
+import { IconButton, Alert, Snackbar, AlertColor } from "@mui/material";
 import Slide, { SlideProps } from "@mui/material/Slide";
 import { MdClose } from "react-icons/md";
 
@@ -6,7 +6,7 @@ type TransitionProps = Omit<SlideProps, "direction">;
 
 type SnackbarProps = {
 	message: string;
-	severity: "error" | "info" | "success" | "warning";
+	severity: AlertColor;
 	open: boolean;
 	setOpen: (open: boolean) => void;
 };
