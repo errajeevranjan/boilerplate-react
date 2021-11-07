@@ -6,18 +6,18 @@ type TransitionProps = Omit<SlideProps, "direction">;
 
 type SnackbarProps = {
 	message: string;
-	messageType: "success" | "info" | "warning" | "error";
+	severity: "error" | "info" | "success" | "warning";
 	open: boolean;
 	setOpen: (open: boolean) => void;
 };
 
-const TransitionLeft = (props: TransitionProps) => {
-	return <Slide {...props} direction='left' />;
-};
+const TransitionLeft = (props: TransitionProps) => (
+	<Slide {...props} direction='left' />
+);
 
 const PositionedSnackbar = ({
 	message,
-	messageType,
+	severity,
 	open,
 	setOpen,
 }: SnackbarProps) => {
@@ -42,10 +42,7 @@ const PositionedSnackbar = ({
 					<MdClose />
 				</IconButton>
 			}>
-			<Alert
-				// variant='filled'
-				onClose={handleClose}
-				severity={messageType}>
+			<Alert onClose={handleClose} severity={severity}>
 				<strong>{message}</strong>
 			</Alert>
 		</Snackbar>
