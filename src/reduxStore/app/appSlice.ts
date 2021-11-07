@@ -2,13 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "..";
 
 type InitialState = {
-	message: string;
+	welcomeText: string;
 	status: "idle" | "loading" | "failed";
 	isDarkModeActive: boolean;
 };
 
 const initialState: InitialState = {
-	message: "If you can see this message then you have working redux setup!",
+	welcomeText:
+		"If you can see this welcomeText then you have working redux setup!",
 	status: "idle",
 	isDarkModeActive: false,
 };
@@ -19,8 +20,8 @@ export const appSlice = createSlice({
 	// The `reducers` field lets us define reducers and generate associated actions
 	reducers: {
 		testReducer: (state) => {
-			state.message =
-				"If you can see this message then your reducer setup is correct!";
+			state.welcomeText =
+				"If you can see this welcomeText then your reducer setup is correct!";
 		},
 
 		toggleDarkModeReducer: (state) => {
