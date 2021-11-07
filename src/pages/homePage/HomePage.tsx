@@ -2,10 +2,13 @@ import { Button } from "@mui/material";
 import { TestImage } from "assets";
 import { useAppDispatch, useAppSelector } from "reduxStore";
 import { appDataInReduxStore, testReducer } from "reduxStore/app/appSlice";
+import { useState } from "react";
+import PositionedSnackbar from "common/mui/PositionedSnackbar";
 
 const HomePage = () => {
 	const dispatch = useAppDispatch();
 	const { message } = useAppSelector(appDataInReduxStore);
+	const [open, setOpen] = useState(false);
 
 	return (
 		<>
@@ -16,6 +19,13 @@ const HomePage = () => {
 				Test if reducer is working or not
 			</Button>
 			<img src={TestImage} alt='testImage' />
+			<Button onClick={() => setOpen(!open)}> Check snackbar</Button>
+			<PositionedSnackbar
+				message='Success: Snackbar is working!'
+				messageType='success'
+				open={open}
+				setOpen={setOpen}
+			/>
 		</>
 	);
 };
