@@ -11,10 +11,15 @@ import {
 	Toolbar,
 	Typography,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import { BrandIcon } from "assets";
-import * as React from "react";
-import { MdChevronRight, MdInbox, MdMail, MdMenu } from "react-icons/md";
+import React, { useState } from "react";
+import {
+	MdChevronRight,
+	MdClose,
+	MdInbox,
+	MdMail,
+	MdMenu,
+} from "react-icons/md";
 import { useAppDispatch } from "reduxStore";
 import { toggleDarkModeReducer } from "reduxStore/app/appSlice";
 import { DarkModeSwitch } from "./DarkModeSwitch";
@@ -27,40 +32,25 @@ type ReactChildren = {
 const Navigation = ({ children }: ReactChildren) => {
 	const dispatch = useAppDispatch();
 
-	const theme = useTheme();
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
-
-	const handleDrawerClose = () => {
-		setOpen(false);
+	const toggleDrawer = () => {
+		setOpen(!open);
 	};
 
 	return (
 		<Box sx={{ display: "flex" }}>
 			<CssBaseline />
-			<AppBar position='fixed' open={open} color='inherit'>
+			<AppBar position='fixed' color='inherit'>
 				<Toolbar>
 					<IconButton
 						color='inherit'
 						aria-label='open drawer'
-						onClick={handleDrawerOpen}
-						edge='start'
-						sx={{
-							marginRight: "36px",
-							...(open && { display: "none" }),
-						}}>
-						<MdMenu />
+						onClick={toggleDrawer}
+						edge='start'>
+						{open ? <MdClose /> : <MdMenu />}
 					</IconButton>
-					<Typography
-						sx={{
-							...(open && { display: "none" }),
-						}}
-						variant='h6'
-						noWrap
-						component='div'>
+					<Typography variant='h6' noWrap component='div'>
 						<BrandIcon /> Brand Name
 					</Typography>
 					<FormControlLabel
@@ -76,15 +66,8 @@ const Navigation = ({ children }: ReactChildren) => {
 			</AppBar>
 			<Drawer variant='permanent' open={open}>
 				<DrawerHeader>
-					<Typography variant='h6' noWrap component='div'>
-						Brand Name
-					</Typography>
-					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === "rtl" ? (
-							<MdChevronRight />
-						) : (
-							<MdChevronRight />
-						)}
+					<IconButton onClick={toggleDrawer}>
+						<MdChevronRight />
 					</IconButton>
 				</DrawerHeader>
 				<Divider />
