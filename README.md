@@ -1,6 +1,7 @@
 # Boilerplate code with react+ts+react-query+mui+redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project can be viewed [here](https://boilerplate-react.pages.dev/).
 
 ## Available Scripts
 
