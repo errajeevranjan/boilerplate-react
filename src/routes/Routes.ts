@@ -11,7 +11,7 @@ export const ROUTES = [
 		key: "route 2",
 		title: "route title for route 2",
 		path: "/route-2",
-		component: lazy(() => import("pages/homePage/HomePage")),
+		component: lazy(() => import("pages/homePage/HomePageTwo")),
 	},
 	{
 		key: "route 3",

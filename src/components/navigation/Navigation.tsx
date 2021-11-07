@@ -5,6 +5,7 @@ import {
 	FormControlLabel,
 	IconButton,
 	List,
+	SvgIcon,
 	ListItem,
 	ListItemIcon,
 	ListItemText,
@@ -13,23 +14,20 @@ import {
 } from "@mui/material";
 import { BrandIcon } from "assets";
 import React, { useState } from "react";
-import {
-	MdChevronRight,
-	MdClose,
-	MdInbox,
-	MdMail,
-	MdMenu,
-} from "react-icons/md";
+import { MdChevronRight, MdClose, MdMenu } from "react-icons/md";
 import { useAppDispatch } from "reduxStore";
 import { toggleDarkModeReducer } from "reduxStore/app/appSlice";
 import { DarkModeSwitch } from "./DarkModeSwitch";
 import { AppBar, Drawer, DrawerHeader } from "./NavigationComponents";
+import { NAV_LINKS } from "constants/NavLinks";
+import { useNavigate } from "react-router-dom";
 
-type ReactChildren = {
+type NavigationTypes = {
 	children: React.ReactNode;
 };
 
-const Navigation = ({ children }: ReactChildren) => {
+const Navigation = ({ children }: NavigationTypes) => {
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
 	const [open, setOpen] = useState(false);
@@ -72,27 +70,19 @@ const Navigation = ({ children }: ReactChildren) => {
 				</DrawerHeader>
 				<Divider />
 				<List>
-					{["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-						<ListItem button key={text}>
+					{NAV_LINKS?.map((nav) => (
+						<ListItem button key={nav.key} onClick={() => navigate(nav.path)}>
 							<ListItemIcon>
-								{index % 2 === 0 ? <MdInbox /> : <MdMail />}
+								{/* TODO: pick one of the two formats for displaying svg icons */}
+								<SvgIcon component={nav.icon} />
+								{/* <nav.icon /> */}
 							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
-				<Divider />
-				<List>
-					{["All mail", "Trash", "Spam"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <MdInbox /> : <MdMail />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
+							<ListItemText primary={nav.title} />
 						</ListItem>
 					))}
 				</List>
 			</Drawer>
+
 			<Box component='main' sx={{ flexGrow: 1, p: 3, overflow: "hidden" }}>
 				<DrawerHeader />
 				{children}
