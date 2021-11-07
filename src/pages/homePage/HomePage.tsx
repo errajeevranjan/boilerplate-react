@@ -12,8 +12,8 @@ const HomePage = () => {
 
 	return (
 		<>
-			This is home page of the app Welcome to boilerplate code for react with TS
-			+ react-query + redux-toolkit + mui.
+			This is home page <b>ONE</b> of the app Welcome to boilerplate code for
+			react with TS + react-query + redux-toolkit + mui.
 			<h1>{message}</h1>
 			<Button onClick={() => dispatch(testReducer())}>
 				Test if reducer is working or not
