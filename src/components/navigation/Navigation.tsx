@@ -12,6 +12,7 @@ import {
 	Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { BrandIcon } from "assets";
 import * as React from "react";
 import { MdChevronRight, MdInbox, MdMail, MdMenu } from "react-icons/md";
 import { useAppDispatch } from "reduxStore";
@@ -60,7 +61,7 @@ const Navigation = ({ children }: ReactChildren) => {
 						variant='h6'
 						noWrap
 						component='div'>
-						Brand Name
+						<BrandIcon /> Brand Name
 					</Typography>
 					<FormControlLabel
 						control={
