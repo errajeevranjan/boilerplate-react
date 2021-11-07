@@ -13,9 +13,9 @@ const client = axios.create({
 });
 
 export const request = ({ ...options }) => {
-	const token = "1234gg"; //? TODO: get token from localStorage or cookie */
+	//? TODO: get AUTH_TOKEN from localStorage or cookie
 
-	client.defaults.headers.common.Authorization = `Bearer ${token}`;
+	client.defaults.headers.common.Authorization = `AUTH_TOKEN`;
 
 	const onSuccess = (response: {}) => response;
 	const onError = (error: {}) => error;
