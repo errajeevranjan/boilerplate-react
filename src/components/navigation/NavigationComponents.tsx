@@ -1,8 +1,8 @@
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import MuiAppBar from "@mui/material/AppBar";
 import MuiDrawer from "@mui/material/Drawer";
 import { CSSObject, styled, Theme } from "@mui/material/styles";
 
-const drawerWidth = 240;
+const drawerWidth = 210;
 
 export const openedMixin = (theme: Theme): CSSObject => ({
 	width: drawerWidth,
@@ -34,26 +34,8 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
 	...theme.mixins.toolbar,
 }));
 
-interface AppBarProps extends MuiAppBarProps {
-	open?: boolean;
-}
-
-export const AppBar = styled(MuiAppBar, {
-	shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
+export const AppBar = styled(MuiAppBar)(({ theme }) => ({
 	zIndex: theme.zIndex.drawer + 1,
-	transition: theme.transitions.create(["width", "margin"], {
-		easing: theme.transitions.easing.sharp,
-		duration: theme.transitions.duration.leavingScreen,
-	}),
-	...(open && {
-		marginLeft: drawerWidth,
-		width: `calc(100% - ${drawerWidth}px)`,
-		transition: theme.transitions.create(["width", "margin"], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-	}),
 }));
 
 export const Drawer = styled(MuiDrawer, {
