@@ -36,7 +36,7 @@ const HomePage = () => {
 		onError,
 	});
 
-	console.log({ isLoading, data, isError, error });
+	// console.log({ isLoading, data, isError, error });
 
 	return (
 		<>
@@ -46,7 +46,7 @@ const HomePage = () => {
 			<Button onClick={() => dispatch(testReducer())}>
 				Test if reducer is working or not
 			</Button>
-			<img src={TestImage} alt='testImage' />
+			<img src={TestImage} alt='testImage' width='100px' height='100px' />
 			<PositionedSnackbar
 				message={message}
 				severity={severity}

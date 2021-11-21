@@ -18,7 +18,7 @@ const HomePageTwo = () => {
 			<Button onClick={() => dispatch(testReducer())}>
 				Test if reducer is working or not
 			</Button>
-			<img src={TestImage} alt='testImage' />
+			<img src={TestImage} alt='testImage' width='100px' height='100px' />
 			<Button onClick={() => setOpen(!open)}> Check snackbar</Button>
 			<PositionedSnackbar
 				message='Success: Snackbar is working!'
