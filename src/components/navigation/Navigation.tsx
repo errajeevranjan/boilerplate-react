@@ -11,6 +11,7 @@ import {
 	ListItemText,
 	Toolbar,
 	Typography,
+	Paper,
 } from "@mui/material";
 import { BrandIcon } from "assets";
 import React, { useState } from "react";
@@ -20,7 +21,7 @@ import { toggleDarkModeReducer } from "reduxStore/app/appSlice";
 import { DarkModeSwitch } from "./DarkModeSwitch";
 import { AppBar, Drawer, DrawerHeader } from "./NavigationComponents";
 import { NAV_LINKS } from "constants/NavLinks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-location";
 
 type NavigationTypes = {
 	children: React.ReactNode;
@@ -71,7 +72,10 @@ const Navigation = ({ children }: NavigationTypes) => {
 				<Divider />
 				<List>
 					{NAV_LINKS?.map((nav) => (
-						<ListItem button key={nav.key} onClick={() => navigate(nav.path)}>
+						<ListItem
+							button
+							key={nav.key}
+							onClick={() => navigate({ to: nav.path })}>
 							<ListItemIcon>
 								{/* TODO: pick one of the two formats for displaying svg icons */}
 								<SvgIcon component={nav.icon} />
@@ -83,10 +87,18 @@ const Navigation = ({ children }: NavigationTypes) => {
 				</List>
 			</Drawer>
 
-			<Box component='main' sx={{ flexGrow: 1, p: 3, overflow: "hidden" }}>
+			<Paper
+				component='main'
+				sx={{
+					flexGrow: 1,
+					p: 3,
+					overflowX: "hidden",
+					height: "100%",
+					width: "100%",
+				}}>
 				<DrawerHeader />
 				{children}
-			</Box>
+			</Paper>
 		</Box>
 	);
 };
