@@ -46,7 +46,7 @@ const HomePage = () => {
 			<Button onClick={() => dispatch(testReducer())}>
 				Test if reducer is working or not
 			</Button>
-			<img src={TestImage} alt='testImage' width='100px' height='100px' />
+			<img src={TestImage} alt='testImage' height='100%' width='100%' />
 			<PositionedSnackbar
 				message={message}
 				severity={severity}
