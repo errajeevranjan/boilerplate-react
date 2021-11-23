@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "react-redux";
 import { store } from "reduxStore";
 import "styles/globalStyles.scss";
-import { Outlet, ReactLocation, Router } from "react-location";
+import { ReactLocation, Router } from "react-location";
 
 import { ReactLocationDevtools } from "react-location-devtools";
 import { appRoutes } from "routes/AppRoutes";

@@ -31,12 +31,10 @@ const HomePage = () => {
 		setMessage("Axios request failed react-query-dev-tool!");
 	};
 
-	const { isLoading, data, isError, error } = useApiTest({
+	useApiTest({
 		onSuccess,
 		onError,
 	});
-
-	// console.log({ isLoading, data, isError, error });
 
 	return (
 		<>

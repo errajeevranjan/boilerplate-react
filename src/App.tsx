@@ -1,7 +1,6 @@
-import { Paper } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import Navigation from "components/navigation/Navigation";
-import { Outlet, ReactLocation, Router } from "react-location";
+import { Outlet } from "react-location";
 
 import { useAppSelector } from "reduxStore";
 import { appDataInReduxStore } from "reduxStore/app/appSlice";
