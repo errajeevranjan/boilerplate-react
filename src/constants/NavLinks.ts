@@ -33,8 +33,8 @@ export const NAV_LINKS = [
 	},
 	{
 		key: "abc6",
-		title: "Homepage 2",
-		path: "/route-6",
+		title: "Authenticated",
+		path: "/authenticated",
 		icon: MdHomeFilled,
 	},
 ];
