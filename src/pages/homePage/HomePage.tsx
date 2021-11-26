@@ -1,7 +1,7 @@
 import { Button, AlertColor } from "@mui/material";
 import { TestImage } from "assets";
-import { useAppDispatch, useAppSelector } from "reduxStore";
-import { appDataInReduxStore, testReducer } from "reduxStore/app/appSlice";
+import { useAppDispatch, useAppSelector } from "store";
+import { appDataInReduxStore, testReducer } from "store/app/appSlice";
 import { useState } from "react";
 import PositionedSnackbar from "common/mui/PositionedSnackbar";
 

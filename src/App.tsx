@@ -2,8 +2,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import Navigation from "components/navigation/Navigation";
 import { Outlet } from "react-location";
 
-import { useAppSelector } from "reduxStore";
-import { appDataInReduxStore } from "reduxStore/app/appSlice";
+import { useAppSelector } from "store";
+import { appDataInReduxStore } from "store/app/appSlice";
 
 import { darkTheme, lightTheme } from "theme/Theme";
 

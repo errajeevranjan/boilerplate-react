@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "react-redux";
-import { store } from "reduxStore";
+import { store } from "store";
 import "styles/globalStyles.scss";
 import { ReactLocation, Router } from "react-location";
 

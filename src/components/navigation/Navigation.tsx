@@ -16,8 +16,8 @@ import {
 import { BrandIcon } from "assets";
 import React, { useState } from "react";
 import { MdChevronRight, MdClose, MdMenu } from "react-icons/md";
-import { useAppDispatch } from "reduxStore";
-import { toggleDarkModeReducer } from "reduxStore/app/appSlice";
+import { useAppDispatch } from "store";
+import { toggleDarkModeReducer } from "store/app/appSlice";
 import { DarkModeSwitch } from "./DarkModeSwitch";
 import { AppBar, Drawer, DrawerHeader } from "./NavigationComponents";
 import { NAV_LINKS } from "constants/NavLinks";
