@@ -1,8 +1,6 @@
 import {
 	Box,
 	CssBaseline,
-	Divider,
-	FormControlLabel,
 	IconButton,
 	List,
 	SvgIcon,
@@ -12,16 +10,20 @@ import {
 	Toolbar,
 	Typography,
 	Paper,
+	Grid,
 } from "@mui/material";
 import { BrandIcon } from "assets";
 import React, { useState } from "react";
-import { MdChevronRight, MdClose, MdMenu } from "react-icons/md";
+import { MdMenuOpen, MdMenu } from "react-icons/md";
+import { ImSun } from "react-icons/im";
+import { RiMoonClearLine } from "react-icons/ri";
 import { useAppDispatch } from "store";
 import { toggleDarkModeReducer } from "store/app/appSlice";
-import { DarkModeSwitch } from "./DarkModeSwitch";
 import { AppBar, Drawer, DrawerHeader } from "./NavigationComponents";
 import { NAV_LINKS } from "constants/NavLinks";
 import { useNavigate } from "react-location";
+import { appDataInReduxStore } from "store/app/appSlice";
+import { useAppSelector } from "store";
 
 type NavigationTypes = {
 	children: React.ReactNode;
@@ -30,6 +32,8 @@ type NavigationTypes = {
 const Navigation = ({ children }: NavigationTypes) => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
+
+	const { isDarkModeActive } = useAppSelector(appDataInReduxStore);
 
 	const [open, setOpen] = useState(false);
 
@@ -42,34 +46,36 @@ const Navigation = ({ children }: NavigationTypes) => {
 			<CssBaseline />
 			<AppBar position='fixed' color='inherit'>
 				<Toolbar>
-					<IconButton
-						color='inherit'
-						aria-label='open drawer'
-						onClick={toggleDrawer}
-						edge='start'>
-						{open ? <MdClose /> : <MdMenu />}
-					</IconButton>
-					<Typography variant='h6' noWrap component='div'>
-						<BrandIcon /> Brand Name
-					</Typography>
-					<FormControlLabel
-						control={
-							<DarkModeSwitch
-								sx={{ m: 1 }}
-								onClick={() => dispatch(toggleDarkModeReducer())}
-							/>
-						}
-						label={""}
-					/>
+					<Grid container justifyContent='space-between' alignItems='center'>
+						<Grid item container xs={10} alignItems='center'>
+							<IconButton
+								color='inherit'
+								aria-label='open drawer'
+								onClick={toggleDrawer}
+								edge='start'>
+								{open ? <MdMenuOpen /> : <MdMenu />}
+							</IconButton>
+							<BrandIcon />
+							<Typography variant='h6' noWrap component='div'>
+								Brand Name
+							</Typography>
+						</Grid>
+						<Grid
+							item
+							container
+							xs={1}
+							alignItems='center'
+							justifyContent={"flex-end"}>
+							{/* dark mode toggle switch */}
+							<IconButton onClick={() => dispatch(toggleDarkModeReducer())}>
+								{isDarkModeActive ? <RiMoonClearLine /> : <ImSun />}
+							</IconButton>
+						</Grid>
+					</Grid>
 				</Toolbar>
 			</AppBar>
 			<Drawer variant='permanent' open={open}>
-				<DrawerHeader>
-					<IconButton onClick={toggleDrawer}>
-						<MdChevronRight />
-					</IconButton>
-				</DrawerHeader>
-				<Divider />
+				<DrawerHeader />
 				<List>
 					{NAV_LINKS?.map((nav) => (
 						<ListItem
