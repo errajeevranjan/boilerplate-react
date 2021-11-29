@@ -19,7 +19,7 @@ export const closedMixin = (theme: Theme): CSSObject => ({
 		duration: theme.transitions.duration.leavingScreen,
 	}),
 	overflowX: "hidden",
-	width: `calc(${theme.spacing(7)} + 1px)`,
+	width: 0, //hiding the docked sidebar on mobile devices
 	[theme.breakpoints.up("sm")]: {
 		width: `calc(${theme.spacing(7.5)} + 1px)`,
 	},
