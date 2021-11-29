@@ -17,13 +17,11 @@ import React, { useState } from "react";
 import { MdMenuOpen, MdMenu } from "react-icons/md";
 import { ImSun } from "react-icons/im";
 import { RiMoonClearLine } from "react-icons/ri";
-import { useAppDispatch } from "store";
-import { toggleDarkModeReducer } from "store/app/appSlice";
+import { useAppDispatch, useAppSelector } from "store";
+import { toggleDarkModeReducer, appDataInReduxStore } from "store/app/appSlice";
 import { AppBar, Drawer, DrawerHeader } from "./NavigationComponents";
 import { NAV_LINKS } from "constants/NavLinks";
 import { useNavigate } from "react-location";
-import { appDataInReduxStore } from "store/app/appSlice";
-import { useAppSelector } from "store";
 
 type NavigationTypes = {
 	children: React.ReactNode;
@@ -97,7 +95,7 @@ const Navigation = ({ children }: NavigationTypes) => {
 				component='main'
 				sx={{
 					flexGrow: 1,
-					p: 3,
+					p: 1,
 					overflowX: "hidden",
 					height: "100%",
 					width: "100%",
