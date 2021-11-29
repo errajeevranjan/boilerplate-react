@@ -12,6 +12,7 @@ import {
 	Paper,
 	Grid,
 } from "@mui/material";
+import { motion } from "framer-motion";
 import { BrandIcon } from "assets";
 import React, { useState } from "react";
 import { MdMenuOpen, MdMenu } from "react-icons/md";
@@ -65,9 +66,12 @@ const Navigation = ({ children }: NavigationTypes) => {
 							alignItems='center'
 							justifyContent={"flex-end"}>
 							{/* dark mode toggle switch */}
-							<IconButton onClick={() => dispatch(toggleDarkModeReducer())}>
-								{isDarkModeActive ? <RiMoonClearLine /> : <ImSun />}
-							</IconButton>
+
+							<motion.div whileTap={{ scale: 0.9 }}>
+								<IconButton onClick={() => dispatch(toggleDarkModeReducer())}>
+									{isDarkModeActive ? <RiMoonClearLine /> : <ImSun />}
+								</IconButton>
+							</motion.div>
 						</Grid>
 					</Grid>
 				</Toolbar>
