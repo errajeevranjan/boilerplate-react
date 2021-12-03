@@ -12,7 +12,7 @@ import {
 	Paper,
 	Grid,
 } from "@mui/material";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { BrandIcon } from "assets";
 import React, { useState } from "react";
 import { MdMenuOpen, MdMenu } from "react-icons/md";
@@ -23,6 +23,7 @@ import { toggleDarkModeReducer, appDataInReduxStore } from "store/app/appSlice";
 import { AppBar, Drawer, DrawerHeader } from "./NavigationComponents";
 import { NAV_LINKS } from "constants/NavLinks";
 import { useNavigate } from "react-location";
+import RisingAnimation from "animations/RisingAnimation";
 
 type NavigationTypes = {
 	children: React.ReactNode;
@@ -59,19 +60,25 @@ const Navigation = ({ children }: NavigationTypes) => {
 								Brand Name
 							</Typography>
 						</Grid>
-						<Grid
-							item
-							container
-							xs={1}
-							alignItems='center'
-							justifyContent={"flex-end"}>
+						<Grid item container xs={1} justifyContent={"flex-end"}>
 							{/* dark mode toggle switch */}
 
-							<motion.div whileTap={{ scale: 0.9 }}>
-								<IconButton onClick={() => dispatch(toggleDarkModeReducer())}>
-									{isDarkModeActive ? <RiMoonClearLine /> : <ImSun />}
-								</IconButton>
-							</motion.div>
+							<IconButton
+								disableRipple
+								onClick={() => dispatch(toggleDarkModeReducer())}>
+								<AnimatePresence>
+									{isDarkModeActive && (
+										<RisingAnimation key='moon'>
+											<RiMoonClearLine />
+										</RisingAnimation>
+									)}
+									{!isDarkModeActive && (
+										<RisingAnimation key='sun'>
+											<ImSun />
+										</RisingAnimation>
+									)}
+								</AnimatePresence>
+							</IconButton>
 						</Grid>
 					</Grid>
 				</Toolbar>
