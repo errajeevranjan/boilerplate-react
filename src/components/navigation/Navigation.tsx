@@ -109,7 +109,7 @@ const Navigation = ({ children }: NavigationTypes) => {
 					p: 1,
 					overflowX: "hidden",
 					height: "100%",
-					width: "100%",
+					width: "100%",borderRadius:0,
 				}}>
 				<DrawerHeader />
 				{children}
